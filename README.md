@@ -145,3 +145,20 @@ Seperti yang kita tahu karena banyak sekali informasi yang harus diterima, buatl
 Untuk informasi yang lebih spesifik mengenai Ranjapan Baratayuda, buatlah subdomain melalui Werkudara dengan akses rjp.baratayuda.abimanyu.yyy.com dengan alias www.rjp.baratayuda.abimanyu.yyy.com yang mengarah ke Abimanyu.  
 
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/b6a8086d-9485-4912-abff-b0ebd1397f34)
+
+## No 9
+Arjuna merupakan suatu Load Balancer Nginx dengan tiga worker (yang juga menggunakan nginx sebagai webserver) yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Lakukan deployment pada masing-masing worker.  
+
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/a56573b4-9d29-4e17-a3cb-db6eafcb3a01)
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/cdb01509-3696-4638-a1aa-6bc7b156c8c3)
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/c658b270-e4aa-4883-b3b9-40d306bf2997)
+
+## No 10
+Kemudian gunakan algoritma Round Robin untuk Load Balancer pada Arjuna. Gunakan server_name pada soal nomor 1. Untuk melakukan pengecekan akses alamat web tersebut kemudian pastikan worker yang digunakan untuk menangani permintaan akan berganti ganti secara acak. Untuk webserver di masing-masing worker wajib berjalan di port 8001-8003. Contoh:
+- Prabakusuma:8001
+- Abimanyu:8002
+- Wisanggeni:8003
+
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/83b24e80-d930-43b7-b654-da6344307dcc)
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/0aff293f-37f9-4a2e-a540-906a04f8f621)
+
