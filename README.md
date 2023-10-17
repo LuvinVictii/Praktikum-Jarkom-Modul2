@@ -189,3 +189,70 @@ Selain menggunakan Nginx, lakukan konfigurasi Apache Web Server pada worker Abim
 
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/b44810b5-9ad5-4bd2-952d-15a2b57fecf2)
 
+## No 12
+Setelah itu ubahlah agar url www.abimanyu.yyy.com/index.php/home menjadi www.abimanyu.yyy.com/home.
+
+**Ubah /etc/apache2/sites-available/abimanyu.f09.conf menjadi :**
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/abimanyu.f09
+        ServerName abimanyu.f09.com
+        ServerAlias www.abimanyu.f09.com
+
+        <Directory /var/www/abimanyu.f09>
+                Options +Indexes
+        </Directory>
+
+        Alias "/home" "/var/www/abimanyu.f09/index.php/home"
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/b0c3b01f-fe6c-43ee-9fdc-341fc4bc1547)
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/51815f9e-ca09-4497-8bcc-66563603615e)
+
+## No 13
+Selain itu, pada subdomain www.parikesit.abimanyu.yyy.com, DocumentRoot disimpan pada /var/www/parikesit.abimanyu.yyy
+
+no-13.SH :  
+```
+touch /etc/apache2/sites-available/parikesit.abimanyu.f09.com.conf
+
+mkdir /var/www/parikesit.abimanyu.f09
+
+echo '
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/parikesit.abimanyu.f09
+        ServerName parikesit.abimanyu.f09.com
+        ServerAlias www.parikesit.abimanyu.f09.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>' > /etc/apache2/sites-available/parikesit.abimanyu.f09.com.conf
+
+a2ensite parikesit.abimanyu.f09.com.conf
+
+service apache2 reload
+
+service apache2 restart
+
+apt-get install wget unzip
+
+
+wget 'https://drive.usercontent.google.com/download?id=1LdbYntiYVF_NVNgJis1GLCLPEGyIOreS&export=download&authuser=0&confirm=t&uuid=7440274a-d695-44db-8cd9-70df5bbf7c96&at=APZUnTWw6S5Rd4s_a6CHfvUKTqQG:1696947964978' -O parikesit_abimanyu.zip
+
+unzip -j parikesit_abimanyu.zip -d /var/www/parikesit.abimanyu.f09
+
+
+rm -rf /var/www/parikesit.abimanyu.f09/parikesit_abimanyu.zip
+```
+**Di yudhistira :**  
+ubah /etc/bind/abimanyu/abimanyu.f09.com  
+-parikesit IN A diarahkan ke abimanyu  
+-buat cname parikesit ( www.parikesit IN CNAME parikesit.abimanyu.f09.com. )  
+
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/4e426649-2c46-44f9-b4ba-ba507bb8a74c)
+
