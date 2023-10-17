@@ -444,8 +444,8 @@ lalu apache restart
 lalu test di client dengan :
 lynx parikesit.abimanyu.f09.com/abimanyu.jpg
 
-- Klik D
+- Klik D:  
   ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/2ad63c2c-08d8-4bf0-96dc-31b83dec1a56)
 
-- Hasil:
+- Hasil:  
   ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/6f2373a2-a9ba-44f1-91c8-e4c620ee8350)
