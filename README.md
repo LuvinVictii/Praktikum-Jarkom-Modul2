@@ -448,4 +448,5 @@ lynx parikesit.abimanyu.f09.com/abimanyu.jpg
   ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/2ad63c2c-08d8-4bf0-96dc-31b83dec1a56)
 
 - Hasil:  
-  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/6f2373a2-a9ba-44f1-91c8-e4c620ee8350)
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/344bdf27-9330-4c94-9e94-e02977aa2e3c)
+
