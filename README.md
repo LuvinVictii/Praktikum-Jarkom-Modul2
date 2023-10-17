@@ -162,3 +162,8 @@ Kemudian gunakan algoritma Round Robin untuk Load Balancer pada Arjuna. Gunakan 
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/83b24e80-d930-43b7-b654-da6344307dcc)
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/0aff293f-37f9-4a2e-a540-906a04f8f621)
 
+## No 11
+Selain menggunakan Nginx, lakukan konfigurasi Apache Web Server pada worker Abimanyu dengan web server www.abimanyu.yyy.com. Pertama dibutuhkan web server dengan DocumentRoot pada /var/www/abimanyu.yyy  
+
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/b44810b5-9ad5-4bd2-952d-15a2b57fecf2)
+
