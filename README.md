@@ -149,6 +149,8 @@ Untuk informasi yang lebih spesifik mengenai Ranjapan Baratayuda, buatlah subdom
 ## No 9
 Arjuna merupakan suatu Load Balancer Nginx dengan tiga worker (yang juga menggunakan nginx sebagai webserver) yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Lakukan deployment pada masing-masing worker.  
 
+**Di yudhistira, arjuna diarahkan ke load balancer, kemudian tambahkan cname www**  
+
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/a56573b4-9d29-4e17-a3cb-db6eafcb3a01)
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/cdb01509-3696-4638-a1aa-6bc7b156c8c3)
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/c658b270-e4aa-4883-b3b9-40d306bf2997)
@@ -159,11 +161,31 @@ Kemudian gunakan algoritma Round Robin untuk Load Balancer pada Arjuna. Gunakan 
 - Abimanyu:8002
 - Wisanggeni:8003
 
+**Pengerjaan :**
+- Port ditambahkan 800x (x dari 1 sampai 3) di worker (/etc/nginx/sites-available/arjuna) dan load balancer (/etc/nginx/sites-available/lb-arjuna)
+- Tes menggunakan lynx untuk http://10.56.3.2:8001, http://10.56.3.3:8002, dst
+
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/83b24e80-d930-43b7-b654-da6344307dcc)
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/0aff293f-37f9-4a2e-a540-906a04f8f621)
 
 ## No 11
 Selain menggunakan Nginx, lakukan konfigurasi Apache Web Server pada worker Abimanyu dengan web server www.abimanyu.yyy.com. Pertama dibutuhkan web server dengan DocumentRoot pada /var/www/abimanyu.yyy  
+
+- **Stop nginx di load balancer dan abimanyu**  
+  apt-get install apache2 di abimanyu
+
+- **di yudistira :**  
+  hapus baratayuda yang di bawahnya parikesit
+
+- **di werkudara :**  
+  nano /etc/bind/named.conf.option
+
+- **di abimanyu :**  
+  jalankan apache.sh
+
+- **di nakula :**  
+  ubah /etc/resolv.conf agar mengarah ke master dan slave
+  test menggunakan lynx abimanyu.f09.com
 
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/b44810b5-9ad5-4bd2-952d-15a2b57fecf2)
 
