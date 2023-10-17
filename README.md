@@ -216,7 +216,7 @@ Setelah itu ubahlah agar url www.abimanyu.yyy.com/index.php/home menjadi www.abi
 ## No 13
 Selain itu, pada subdomain www.parikesit.abimanyu.yyy.com, DocumentRoot disimpan pada /var/www/parikesit.abimanyu.yyy
 
-no-13.SH :  
+no-13.sh :  
 ```
 touch /etc/apache2/sites-available/parikesit.abimanyu.f09.com.conf
 
@@ -271,9 +271,10 @@ di bawah alias
         </Directory>
 ```
 atau bisa langsung dicek karena sudah dibash di soal 13  
+```
 lynx www.parikesit.abimanyu.f09.com/public  
 lynx www.parikesit.abimanyu.f09.com/secret  
-
+```
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/5f6026c1-2745-41fc-906a-2da24e84ee18)
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/adea0c16-88a2-4e01-a654-5c2fc675ba58)
 
@@ -281,17 +282,23 @@ lynx www.parikesit.abimanyu.f09.com/secret
 Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah 404 Not Found dan 403 Forbidden.
 
 tambahkan  
+```
 ErrorDocument 404 /error/404.html  
 ErrorDocument 403 /error/403.html  
-  
-kemudian cek lynx www.parikesit.abimanyu.f09.com/woooyyyyy  
+```  
+kemudian cek
+```
+lynx www.parikesit.abimanyu.f09.com/woooyyyyy  
+```
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/ccbae3b9-a3b4-4b12-8244-7296dd53b7a3)
 
 ## No 16
 Buatlah suatu konfigurasi virtual host agar file asset www.parikesit.abimanyu.yyy.com/public/js menjadi www.parikesit.abimanyu.yyy.com/js  
   
 tambahkan  
+```
 Alias "/js" "/var/www/parikesit.abimanyu.f09/public/js"  
+```
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/59634fa0-5edc-42a2-9456-e44b180c97e6)
 
 ## No 17
@@ -351,9 +358,9 @@ di yudhistira :
 arahkan ns1 ke abimanyu  
   
 test di client  
-  
+```
 lynx rjp.baratayuda.abimanyu.f09.com:14400  
-
+```
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/1442a33a-78b4-4045-9707-a6f9814b654f)
 
 ## No 18
@@ -391,3 +398,54 @@ lynx rjp.baratayuda.abimanyu.f09.com:14400
 nanti tidak bisa masuk, tunggu bentar lalu masukkan:  
 username : Wayang  
 pass : baratayudaf09  
+
+## No 19
+Buatlah agar setiap kali mengakses IP dari Abimanyu akan secara otomatis dialihkan ke www.abimanyu.yyy.com (alias)  
+  
+tambahkan dibawah serveralias www.abimanyu.f09.com di /etc/apache2/sites-available/abimanyu.f09.com.conf  
+  
+ServerAlias 10.56.3.3  
+  
+lalu test di client  
+lynx 10.56.3.3  
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/e48f974f-a26b-4ce4-8733-9df4a5c421f5)  
+
+## No 20
+Karena website www.parikesit.abimanyu.yyy.com semakin banyak pengunjung dan banyak gambar gambar random, maka ubahlah request gambar yang memiliki substring “abimanyu” akan diarahkan menuju abimanyu.png
+
+di abimanyu :
+```
+nano /var/www/parikesit.abimanyu.f09/.htaccess
+```
+lalu isi nanonya dengan : 
+```
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public/images/abimanyu.png
+RewriteCond %{REQUEST_URI} abimanyu
+RewriteRule \.(jpg|jpeg|png)$ /public/images/abimanyu.png [L]
+```
+lalu, ubah conf parikesitnya :
+```
+nano /etc/apache2/sites-available/parikesit.abimanyu.f09.com.conf
+```
+tambahkan ini :
+```
+<Directory /var/www/parikesit.abimanyu.f09>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+```
+
+lalu jalankan :
+a2enmod rewrite
+
+lalu apache restart
+
+lalu test di client dengan :
+lynx parikesit.abimanyu.f09.com/abimanyu.jpg
+
+- Klik D
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/2ad63c2c-08d8-4bf0-96dc-31b83dec1a56)
+
+- Hasil:
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/6f2373a2-a9ba-44f1-91c8-e4c620ee8350)
