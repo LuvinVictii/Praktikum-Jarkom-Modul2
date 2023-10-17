@@ -294,3 +294,100 @@ tambahkan
 Alias "/js" "/var/www/parikesit.abimanyu.f09/public/js"  
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/59634fa0-5edc-42a2-9456-e44b180c97e6)
 
+## No 17
+Agar aman, buatlah konfigurasi agar www.rjp.baratayuda.abimanyu.yyy.com hanya dapat diakses melalui port 14000 dan 14400.
+
+Jalankan bash no-17 yg isinya :
+```
+touch /etc/apache2/sites-available/rjp.baratayuda.abimanyu.f09.com.conf
+
+mkdir /var/www/rjp.baratayuda.abimanyu.f09
+
+echo '
+<VirtualHost *:14000 *:14400>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/rjp.baratayuda.abimanyu.f09
+    ServerName www.rjp.baratayuda.abimanyu.f09.com
+    ServerAlias rjp.baratayuda.abimanyu.f09.com
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>'> /etc/apache2/sites-available/rjp.baratayuda.abimanyu.f09.com.conf
+
+
+echo '
+Listen 80
+Listen 14000
+Listen 14400
+
+<IfModule ssl_module>
+        Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+        Listen 443
+</IfModule>' > /etc/apache2/ports.conf
+a2ensite rjp.baratayuda.abimanyu.f09.com.conf
+
+service apache2 reload
+
+service apache2 restart
+
+apt-get install wget unzip
+
+wget 'https://drive.usercontent.google.com/download?id=1pPSP7yIR05JhSFG67RVzgkb-VcW9vQO6&export=download&authuser=0&confirm=t&uuid=c039943d-843b-47b9-8910-4b46edf58596&at=APZUnTWSNiEJdlQx1mlaCEI-F6-B:1696957565777' -O rjp_baratayuda.zip
+
+unzip -j rjp_baratayuda.zip -d ./
+
+mv rjp.baratayuda.abimanyu.yyy.com
+
+rm -rf /var/www/rjp.baratayuda.abimanyu.f09/rjp_baratayuda_abimanyu.zip
+```
+
+di wekudara :  
+arahkan rjp ke abimanyu  
+  
+di yudhistira :  
+arahkan ns1 ke abimanyu  
+  
+test di client  
+  
+lynx rjp.baratayuda.abimanyu.f09.com:14400  
+
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/1442a33a-78b4-4045-9707-a6f9814b654f)
+
+## No 18
+
+Untuk mengaksesnya buatlah autentikasi username berupa “Wayang” dan password “baratayudayyy” dengan yyy merupakan kode kelompok. Letakkan DocumentRoot pada /var/www/rjp.baratayuda.abimanyu.yyy.
+
+**Add user**  
+
+- **Tertolak**  
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/00aaf4fe-3511-41f7-83f5-b0186e91544a)
+- **Inputkan username : Wayang**  
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/893d54da-5fe3-4570-bc77-b3dd2c369bee)
+- **Masukkan password**  
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/6f7f6fb4-b6f4-42e2-b056-f90f3d9358ba)
+- **Terbuka**  
+  ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/980e73e1-290e-4512-9e7b-feec253ddee9)  
+
+klik di abimanyu :
+```
+htpasswd -b -c /etc/apache2/.htpasswd Wayang baratayudaf09
+```
+
+lalu tambahkan di /etc/apache2/sites-available/rjp.baratayuda.abimanyu.f09.com.conf  
+```
+<Directory "/var/www/rjp.baratayuda.abimanyu.f09">
+                AuthType Basic
+                AuthName "Restricted Content"
+                AuthUserFile /etc/apache2/.htpasswd
+                Require valid-user
+        </Directory>
+```
+lalu test di  
+  
+lynx rjp.baratayuda.abimanyu.f09.com:14400  
+nanti tidak bisa masuk, tunggu bentar lalu masukkan:  
+username : Wayang  
+pass : baratayudaf09  
