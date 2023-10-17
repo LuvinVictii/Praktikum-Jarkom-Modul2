@@ -256,3 +256,41 @@ ubah /etc/bind/abimanyu/abimanyu.f09.com
 
 ![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/4e426649-2c46-44f9-b4ba-ba507bb8a74c)
 
+## No 14
+Pada subdomain tersebut folder /public hanya dapat melakukan directory listing sedangkan pada folder /secret tidak dapat diakses (403 Forbidden).
+
+buat folder secret dan tambahkan pada /etc/apache2/sites-available/parikesit.abimanyu.f09.com.conf
+di bawah alias
+```
+	<Directory /var/www/parikesit.abimanyu.f09/public>
+                Options +Indexes
+        </Directory>
+
+        <Directory /var/www/parikesit.abimanyu.f09/secret>
+               Options -Indexes
+        </Directory>
+```
+atau bisa langsung dicek karena sudah dibash di soal 13  
+lynx www.parikesit.abimanyu.f09.com/public  
+lynx www.parikesit.abimanyu.f09.com/secret  
+
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/5f6026c1-2745-41fc-906a-2da24e84ee18)
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/adea0c16-88a2-4e01-a654-5c2fc675ba58)
+
+## No 15
+Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah 404 Not Found dan 403 Forbidden.
+
+tambahkan  
+ErrorDocument 404 /error/404.html  
+ErrorDocument 403 /error/403.html  
+  
+kemudian cek lynx www.parikesit.abimanyu.f09.com/woooyyyyy  
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/ccbae3b9-a3b4-4b12-8244-7296dd53b7a3)
+
+## No 16
+Buatlah suatu konfigurasi virtual host agar file asset www.parikesit.abimanyu.yyy.com/public/js menjadi www.parikesit.abimanyu.yyy.com/js  
+  
+tambahkan  
+Alias "/js" "/var/www/parikesit.abimanyu.f09/public/js"  
+![image](https://github.com/LuvinVictii/Praktikum-Jarkom-Modul2/assets/78089862/59634fa0-5edc-42a2-9456-e44b180c97e6)
+
